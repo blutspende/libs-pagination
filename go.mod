@@ -1,4 +1,4 @@
-module github.com/blutspende/libs/pagination
+module github.com/blutspende/libs-pagination
 
 go 1.26.6
 
