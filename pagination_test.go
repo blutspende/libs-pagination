@@ -73,3 +73,17 @@ func TestPagination_StandardisePagination_ZeroSize(t *testing.T) {
 	assert.Equal(t, 0, result.PageSize)
 	assert.Equal(t, 0, result.Page)
 }
+
+func TestPagination_Serialize(t *testing.T) {
+	// Arrange
+	input := PaginatedQuery{
+		PageSize:  25,
+		Page:      3,
+		Direction: "asc",
+		Sort:      "name",
+	}
+	// Act
+	result := input.Serialize()
+	// Assert
+	assert.Equal(t, "PAGE:25|3|asc|name", result)
+}

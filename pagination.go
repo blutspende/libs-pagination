@@ -1,5 +1,7 @@
 package pagination
 
+import "fmt"
+
 type PaginatedQuery struct {
 	PageSize  int    `form:"pageSize" json:"pageSize" minimum:"0" default:"25" example:"25"`
 	Page      int    `form:"page" json:"page" minimum:"0" default:"0" example:"1"`
@@ -25,6 +27,10 @@ func (p PaginatedQuery) IsPaged() bool {
 }
 func (p PaginatedQuery) IsUnPaged() bool {
 	return p.PageSize == 0
+}
+
+func (p PaginatedQuery) Serialize() string {
+	return fmt.Sprintf("PAGE:%d|%d|%s|%s", p.PageSize, p.Page, p.Direction, p.Sort)
 }
 
 func TotalPages(totalCount, pageSize int) int {
